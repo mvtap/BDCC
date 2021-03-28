@@ -159,7 +159,7 @@ def image_search_multiple():
 
     results = BQ_CLIENT.query(
     '''
-    SELECT ImageID, FORMAT("%T", ARRAY_AGG(DISTINCT Description)) AS classes, COUNT(DISTINCT Description) as c
+    SELECT ImageID, ARRAY_AGG(DISTINCT Description) AS classes, COUNT(DISTINCT Description) as c
     FROM `bdcc21project.openimages.classes`
     JOIN `bdcc21project.openimages.image_labels` USING(Label)
     WHERE Description IN UNNEST({0})
