@@ -136,6 +136,7 @@ def relation_search():
     WHERE r.Relation LIKE '{0}'
     AND c1.Description LIKE '{1}'
     AND c2.Description LIKE '{2}'
+    ORDER BY r.ImageId
     LIMIT {3}
     '''.format(relation, class1, class2, image_limit)
     ).result()
