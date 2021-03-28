@@ -79,7 +79,7 @@ def image_info():
         FROM `bdcc21project.openimages.image_labels`
         JOIN `bdcc21project.openimages.classes` USING(Label)
         WHERE ImageId = '{0}' 
-        ORDER BY ImageId 
+        ORDER BY Description asc 
     '''.format(image_id)
     ).result()
     
