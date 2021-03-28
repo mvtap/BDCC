@@ -95,7 +95,7 @@ def image_info():
 
     data = dict(description = image_id,
                 classes = results_classes,
-                relations = result_relation
+                relations = result_relations
                 )
     return flask.render_template('image_info.html', data = data)
 
