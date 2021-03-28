@@ -119,58 +119,18 @@ def relation_search():
     class2 = flask.request.args.get('class2', default='%')
     image_limit = flask.request.args.get('image_limit', default=10, type=int)
 
-    if (class1 != '%' and class2 != '%'):             #Case where are 2 classes input
-
-        results = BQ_CLIENT.query(
-        '''
-        SELECT r.ImageId, c1.Description as Class1, r.Relation, c2.Description as Class2
-        FROM `bdcc21project.openimages.relations` r
-        JOIN `bdcc21project.openimages.classes` c1 ON (r.Label1=c1.Label)
-        JOIN `bdcc21project.openimages.classes` c2 ON (r.Label2=c2.Label)
-        WHERE r.Relation = '{0}'
-        AND c1.Description = '{1}'
-        AND c2.Description = '{2}'
-        LIMIT {3}
-        '''.format(relation, class1, class2, image_limit)
-        ).result()
-
-    elif (class1 != '%' and class2 == '%'):             #Just class 1
-        results = BQ_CLIENT.query(
-        '''
-        SELECT r.ImageId, c1.Description as Class1, r.Relation, c2.Description as Class2
-        FROM `bdcc21project.openimages.relations` r
-        JOIN `bdcc21project.openimages.classes` c1 ON (r.Label1=c1.Label)
-        JOIN `bdcc21project.openimages.classes` c2 ON (r.Label2=c2.Label)
-        WHERE r.Relation = '{0}' 
-        AND c1.Description = '{1}'
-        LIMIT {2}
-        '''.format(relation, class1, image_limit)
-        ).result()
-
-    elif (class1 == '%' and class2 != '%'):             #Just class 2
-        results = BQ_CLIENT.query(
-        '''
-        SELECT r.ImageId, c1.Description as Class1, r.Relation, c2.Description as Class2
-        FROM `bdcc21project.openimages.relations` r
-        JOIN `bdcc21project.openimages.classes` c1 ON (r.Label1=c1.Label)
-        JOIN `bdcc21project.openimages.classes` c2 ON (r.Label2=c2.Label)
-        WHERE r.Relation = '{0}' 
-        AND c2.Description = '{1}'
-        LIMIT {2}
-        '''.format(relation, class2, image_limit)
-        ).result()
-
-    else:                                               #No class inputs
-        results = BQ_CLIENT.query(
-        '''
-        SELECT r.ImageId, c1.Description as Class1, r.Relation, c2.Description as Class2
-        FROM `bdcc21project.openimages.relations` r
-        JOIN `bdcc21project.openimages.classes` c1 ON (r.Label1=c1.Label)
-        JOIN `bdcc21project.openimages.classes` c2 ON (r.Label2=c2.Label)
-        WHERE r.Relation = '{0}' 
-        LIMIT {1}
-        '''.format(relation, image_limit)
-        ).result()
+    results = BQ_CLIENT.query(
+    '''
+    SELECT r.ImageId, c1.Description as Class1, r.Relation, c2.Description as Class2
+    FROM `bdcc21project.openimages.relations` r
+    JOIN `bdcc21project.openimages.classes` c1 ON (r.Label1=c1.Label)
+    JOIN `bdcc21project.openimages.classes` c2 ON (r.Label2=c2.Label)
+    WHERE r.Relation LIKE '{0}'
+    AND c1.Description LIKE '{1}'
+    AND c2.Description LIKE '{2}'
+    LIMIT {3}
+    '''.format(relation, class1, class2, image_limit)
+    ).result()
 
     logging.info('relation_search: limit={}, results={}'\
            .format(image_limit, results.total_rows))
