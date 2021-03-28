@@ -12,12 +12,14 @@
     <tr>
         <td>
         {% for class in data.classes %}
-            <a href="/image_search?description={{ class[0] }}">{{ class[0] }} \n</a>
+            <a href="/image_search?description={{ class[0] }}">{{ class[0] }}</a>
+            </br>
         {% endfor %}
         </td>
         <td>
         {% for relation in data.relations %}
-            <a href="/relation_search?relation={{ relation[0] }}&class1={{ relation[1] }}&class2={{ relation[2] }}">{{ relation[0] }} {{ relation[1] }} {{ relation[2] }}</a>
+            <a href="/relation_search?relation={{ relation[1] }}&class1={{ relation[0] }}&class2={{ relation[2] }}">{{ relation[0] }} {{ relation[1] }} {{ relation[2] }}</a>
+            </br>
         {% endfor %}
         </td>
         <td>
