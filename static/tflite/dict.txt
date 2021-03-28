@@ -1,0 +1,10 @@
+Lion
+Bull
+Frog
+Chicken
+Elephant
+Duck
+Dolphin
+Tortoise
+Butterfly
+Monkey

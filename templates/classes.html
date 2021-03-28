@@ -1,0 +1,25 @@
+{% extends 'general-template.html'  %}
+{% block content %}
+
+<body>
+
+<h1>Image classes</h1>
+
+<table>
+    <tr>
+        <th>Description</th>
+        <th>Image count</th>
+    </tr>
+    {% for result in data.results %}
+    <tr>
+        <td>
+            <a href="/image_search?description={{ result[0] }}">{{ result[0] }}</a>
+        </td>
+        <td>
+            {{ result[1] }}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

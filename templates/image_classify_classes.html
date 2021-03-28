@@ -1,0 +1,24 @@
+{% extends 'general-template.html'  %}
+{% block content %}
+
+<h1>Image classification classes</h1>
+
+<b>{{ data.results|length }}</b> classes can be classified.
+
+<table>
+    <tr>
+        <th>Class</th>
+    </tr>
+    {% for result in data.results %}
+    <tr>
+        <td>
+            <a href="/image_search?description={{ result }}">{{ result }}</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
+
+
+
