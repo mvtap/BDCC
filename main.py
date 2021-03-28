@@ -179,7 +179,7 @@ def image_search_multiple():
                 results=results,
                 number_classes=number_classes)
 
-    return flask.render_template('image_search_multiple.html')
+    return flask.render_template('image_search_multiple.html', data=data)
 
 @app.route('/image_classify_classes')
 def image_classify_classes():
