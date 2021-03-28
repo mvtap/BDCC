@@ -72,7 +72,7 @@ def relations():
 @app.route('/image_info')
 def image_info():
     image_id = flask.request.args.get('image_id')
-    # TODO
+
     results_classes = BQ_CLIENT.query(
     '''
         SELECT Description
@@ -83,13 +83,21 @@ def image_info():
     '''.format(image_id)
     ).result()
     
+    results_relations = BQ_CLIENT.query(
+    '''
+    SELECT c1.Description as Class1, r.Relation, c2.Description as Class2
+    FROM `bdcc21project.openimages.relations` r
+    JOIN `bdcc21project.openimages.classes` c1 ON (r.Label1=c1.Label)
+    JOIN `bdcc21project.openimages.classes` c2 ON (r.Label2=c2.Label)
+    WHERE r.ImageId = '{0}'
+    '''.format(image_id)
+    ).result()    
 
-
-    data = dict(ImageID = image_id,
-                Classes = results_classes,
-                Relation = relations
+    data = dict(description = image_id,
+                classes = results_classes,
+                relations = results_relations
                 )
-    return flask.render_template('image_info.html')
+    return flask.render_template('image_info.html', data = data)
 
 @app.route('/image_search')
 def image_search():
