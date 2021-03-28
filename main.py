@@ -127,9 +127,9 @@ def relation_search():
         FROM `bdcc21project.openimages.relations` r
         JOIN `bdcc21project.openimages.classes` c1 ON (r.Label1=c1.Label)
         JOIN `bdcc21project.openimages.classes` c2 ON (r.Label2=c2.Label)
-        WHERE r.Relation = {0} 
-        AND c1.Description = {1}
-        AND c2.Description = {2}
+        WHERE r.Relation = '{0}'
+        AND c1.Description = '{1}'
+        AND c2.Description = '{2}'
         LIMIT {3}
         '''.format(relation, class1, class2, image_limit)
         ).result()
@@ -141,8 +141,8 @@ def relation_search():
         FROM `bdcc21project.openimages.relations` r
         JOIN `bdcc21project.openimages.classes` c1 ON (r.Label1=c1.Label)
         JOIN `bdcc21project.openimages.classes` c2 ON (r.Label2=c2.Label)
-        WHERE r.Relation = {0} 
-        AND c1.Description = {1}
+        WHERE r.Relation = '{0}' 
+        AND c1.Description = '{1}'
         LIMIT {2}
         '''.format(relation, class1, image_limit)
         ).result()
@@ -154,8 +154,8 @@ def relation_search():
         FROM `bdcc21project.openimages.relations` r
         JOIN `bdcc21project.openimages.classes` c1 ON (r.Label1=c1.Label)
         JOIN `bdcc21project.openimages.classes` c2 ON (r.Label2=c2.Label)
-        WHERE r.Relation = {0} 
-        AND c2.Description = {1}
+        WHERE r.Relation = '{0}' 
+        AND c2.Description = '{1}'
         LIMIT {2}
         '''.format(relation, class2, image_limit)
         ).result()
@@ -167,7 +167,7 @@ def relation_search():
         FROM `bdcc21project.openimages.relations` r
         JOIN `bdcc21project.openimages.classes` c1 ON (r.Label1=c1.Label)
         JOIN `bdcc21project.openimages.classes` c2 ON (r.Label2=c2.Label)
-        WHERE r.Relation = {0} 
+        WHERE r.Relation = '{0}' 
         LIMIT {1}
         '''.format(relation, image_limit)
         ).result()
