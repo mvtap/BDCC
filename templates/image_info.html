@@ -1,0 +1,31 @@
+{% extends 'general-template.html'  %}
+{% block content %}
+
+<h1>{{ data.description }}</h1>
+
+<table>
+    <tr>
+        <th>Classes</th>
+        <th>Relations</th>
+        <th>Image</th>
+    </tr>
+    <tr>
+        <td>
+            <h2>{{ result[0] }}</h2>
+        </td>
+        <td>
+            <h2>{{ result[1] }}</h2>
+        </td>
+        <td>
+            <a href="https://storage.googleapis.com/bdcc_open_images_dataset/images/{{ result[0] }}.jpg">
+                <img width="300" src="https://storage.googleapis.com/bdcc_open_images_dataset/images/{{ result[0] }}.jpg"/>
+            </a>
+        </td>
+    </tr>
+</table>
+
+
+</table>
+
+{% endblock %}
+
