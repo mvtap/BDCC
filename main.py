@@ -181,7 +181,7 @@ def relation_search():
                 image_limit=image_limit,
                 results=results)
 
-    return flask.render_template('relation_search.html')
+    return flask.render_template('relation_search.html', data = data)
 
 @app.route('/image_search_multiple')
 def image_search_multiple():
