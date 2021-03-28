@@ -57,14 +57,39 @@ def classes():
 
 @app.route('/relations')
 def relations():
-    # TODO
-    return flask.render_template('not_implemented.html')
+    
+    results = BQ_CLIENT.query(
+    '''
+        SELECT Relation, COUNT(*) AS NumImages
+        FROM `bdcc21project.openimages.relations`
+        GROUP BY Relation
+        ORDER BY Relation asc
+    ''').result()
+
+    data = dict(results=results)
+    return flask.render_template('relations.html', data=data)
 
 @app.route('/image_info')
 def image_info():
     image_id = flask.request.args.get('image_id')
     # TODO
-    return flask.render_template('not_implemented.html')
+    results_classes = BQ_CLIENT.query(
+    '''
+        SELECT Description
+        FROM `bdcc21project.openimages.image_labels`
+        JOIN `bdcc21project.openimages.classes` USING(Label)
+        WHERE ImageId = '{0}' 
+        ORDER BY ImageId 
+    '''.format(image_id)
+    ).result()
+    
+
+
+    data = dict(ImageID = image_id,
+                Classes = results_classes,
+                Relation = relations
+                )
+    return flask.render_template('image_info.html')
 
 @app.route('/image_search')
 def image_search():
