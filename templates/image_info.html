@@ -12,17 +12,17 @@
     <tr>
         {% for class in data.results.classes %}
         <td>
-            <a href="/image_search?description={{ result.class[0] }}">{{ result.class[0] }}</a>
+            <a href="/image_search?description={{ class[0] }}">{{ class[0] }}</a>
         </td>
         {% endfor %}
         {% for class in data.results.relations %}
         <td>
-            <a href="/relation_search?Relation={{ result.relation[0] }}&Class1={{ result.relation[1] }}&Class2={{ result.relation[2] }}">{{ result.relation[0] }}{{ result.relation[1] }}{{ result.relation[2] }}</a>
+            <a href="/relation_search?Relation={{ relation[0] }}&Class1={{ relation[1] }}&Class2={{ relation[2] }}">{{ relation[0] }}{{ relation[1] }}{{ relation[2] }}</a>
         </td>
         {% endfor %}
         <td>
-            <a href="https://storage.googleapis.com/bdcc_open_images_dataset/images/{{ result[0] }}.jpg">
-                <img width="300" src="https://storage.googleapis.com/bdcc_open_images_dataset/images/{{ result[0] }}.jpg"/>
+            <a href="https://storage.googleapis.com/bdcc_open_images_dataset/images/{{ data.description }}.jpg">
+                <img width="300" src="https://storage.googleapis.com/bdcc_open_images_dataset/images/{{ data.description }}.jpg"/>
             </a>
         </td>
     </tr>
