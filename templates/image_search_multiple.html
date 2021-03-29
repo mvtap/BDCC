@@ -19,7 +19,8 @@
         <td>
             <p>{{ result.c }} / {{ data.number_classes }} classes.</p>
             {% for class in result.classes %}
-                <a href="/image_search?description={{ class }}">{{ class }} </a>
+                <a href="/image_search?description={{ class }}">{{ class }}</a>
+                </br>
             {% endfor %}
         </td>
         <td>
