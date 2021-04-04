@@ -1,10 +1,10 @@
-Aircraft
 Bicycle
-Boat
-Bus
-Car
-Train
 Helicopter
-Motorcycle
-Truck
+Boat
+Train
+Car
 Skateboard
+Motorcycle
+Bus
+Aircraft
+Truck
