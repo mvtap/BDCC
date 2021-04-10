@@ -1,0 +1,37 @@
+{% extends 'general-template.html'  %}
+{% block content %}
+
+<h1>{{ data.description }}</h1>
+
+<table>
+    <tr>
+        <th>Classes</th>
+        <th>Relations</th>
+        <th>Image</th>
+    </tr>
+    <tr>
+        <td>
+        {% for class in data.classes %}
+            <a href="/image_search?description={{ class[0] }}">{{ class[0] }}</a>
+            </br>
+        {% endfor %}
+        </td>
+        <td>
+        {% for relation in data.relations %}
+            <a href="/relation_search?relation={{ relation[1] }}&class1={{ relation[0] }}&class2={{ relation[2] }}">{{ relation[0] }} {{ relation[1] }} {{ relation[2] }}</a>
+            </br>
+        {% endfor %}
+        </td>
+        <td>
+            <a href="https://storage.googleapis.com/bdcc_open_images_dataset/images/{{ data.description }}.jpg">
+                <img width="300" src="https://storage.googleapis.com/bdcc_open_images_dataset/images/{{ data.description }}.jpg"/>
+            </a>
+        </td>
+    </tr>
+</table>
+
+
+</table>
+
+{% endblock %}
+

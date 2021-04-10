@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8" />
+        <title>BDCC project</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<html>
+<body>
+
+<br/>
+<a href="javascript:history.back()">&lt; Go Back</a>
+&nbsp;
+<a href="/">Start page</a> 
+&nbsp;
+<a href="https://www.dcc.fc.up.pt/~edrdo/aulas/bdcc/project">Project information</a>
+&nbsp;
+<a href="https://www.dcc.fc.up.pt/~edrdo/aulas/bdcc">BDCC homepage</a>
+<br/>
+
+{% block content %}{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends 'general-template.html'  %}
+{% block content %}
+
+<h1>{{ data.description }}</h1>
+
+{{ data.results.total_rows }} results out of {{ data.image_limit }} requested.
+
+<table>
+    <tr>
+        <th>ImageId</th>
+        <th>Image</th>
+    </tr>
+{% for result in data.results %}
+    <tr>
+        <td>
+            <a href="/image_info?image_id={{ result[0] }}">{{ result[0] }}</a></h2>
+        </td>
+        <td>
+            <a href="https://storage.googleapis.com/bdcc_open_images_dataset/images/{{ result[0] }}.jpg">
+                <img width="300" src="https://storage.googleapis.com/bdcc_open_images_dataset/images/{{ result[0] }}.jpg"/>
+            </a>
+        </td>
+    </tr>
+{% endfor %}
+</table>
+
+
+</table>
+
+{% endblock %}
+
+

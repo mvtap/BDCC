@@ -1,0 +1,25 @@
+{% extends 'general-template.html'  %}
+{% block content %}
+
+<body>
+
+<h1>Relations</h1>
+
+<table>
+    <tr>
+        <th>Relation</th>
+        <th>Image Count</th>
+    </tr>
+    {% for result in data.results %}
+    <tr>
+        <td>
+            <a href="/relation_search?relation={{ result[0] }}">{{ result[0] }}</a>
+        </td>
+        <td>
+            {{ result[1] }}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

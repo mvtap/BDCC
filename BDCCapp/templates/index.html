@@ -1,0 +1,179 @@
+{% extends 'general-template.html'  %}
+{% block content %}
+
+<h1>BDCC project app</h1>
+
+<table>
+    <tr>
+        <th>Endpoint</th>
+        <th>Description</th>
+        <th>Test</th>
+    </tr>
+    <tr>
+        <td>
+            <tt>/classes</tt>
+        </td>
+        <td>
+            List image labels.
+        </td>
+        <td>
+        <form action="/classes">
+            <input type="Submit" value="List"/>
+        </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <tt>/image_info</tt>
+        </td>
+        <td>
+            Get information for a single image.
+        </td>
+        <td>
+            <form action="/image_info" method="GET">
+                <label>Image Id: </label> 
+                <input name="image_id" type="text"  value="0041c772f8b9aef6"/>
+                <input type="Submit" value="Get info"/>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <tt>/relations</tt>
+        </td>
+        <td>
+            List relation types.
+        </td>
+        <td>
+            <form action="/relations">
+                <input type="Submit" value="List"/>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <tt>/image_search</tt>
+        </td>
+        <td>
+            Search for images based on a single label.
+        </td>
+        <td>
+            <form action="/image_search" method="GET">
+                <label>Description: </label>
+                <input name="description" type="text"  value="Cat"/>
+                <br/>
+                <label>Image limit: </label>
+                <input 
+                name="image_limit" 
+                type="range" value="10"  min="1" max="100"
+                onChange="document.getElementById('is_limit_value').innerHTML = this.value"
+                />
+                <label id="is_limit_value">10</label>
+                </br>
+                <input type="Submit" value="Search"/>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <tt>/image_search_multiple</tt>
+        </td>
+        <td>
+            Search for images based on multiple labels
+            (<b>tip:</b> 
+            <a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/functions-and-operators#array_agg">ARRAY_AGG</a>
+            and <a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#unnest">UNNEST</a>)
+            may be useful.)
+        </td>
+        <td>
+            <form action="/image_search_multiple" method="GET">
+                <label>Descriptions (comma-separated): </label>
+                <input name="descriptions" type="text"  value="Cat,Dog"/>
+                <br/>
+                <label>Image limit: </label>
+                <input 
+                name="image_limit" 
+                type="range" value="10"  min="1" max="100"
+                onChange="document.getElementById('ism_limit_value').innerHTML = this.value"
+                />
+                <label id="ism_limit_value">10</label>
+                </br>
+                <input type="Submit" value="Search"/>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <tt>/relation_search</tt>
+        </td>
+        <td>
+            Search for images by relation 
+            (<b>tip:</b> use the <a href="https://cloud.google.com/bigquery/docs/reference/standard-sql/operators">LIKE</a> 
+            operator).
+        </td>
+        <td>
+            <form action="/relation_search" method="GET">
+                <label>Class 1 (% for any): </label>
+                <input name="class1" type="text"  value="%"/>
+                <br/>
+                <label>Relation (% for any): </label>
+                <input name="relation" type="text"  value="plays"/>
+                <br/>
+                <label>Class 2 (% for any): </label>
+                <input name="class2" type="text"  value="%"/>
+                <br/>
+                <label>Image limit: </label>
+                <input 
+                name="image_limit" 
+                type="range" value="10"  min="1" max="100"
+                onChange="document.getElementById('rs_limit_value').innerHTML = this.value"
+                />
+                <label id="rs_limit_value">10</label>
+                </br>
+                <input type="Submit" value="Search"/>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <tt>/image_classify_classes</tt>
+        </td>
+        <td>
+            List available classes for image classification.
+        </td>
+        <td>
+        <form action="/image_classify_classes">
+            <input type="Submit" value="List"/>
+        </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <tt>/image_classify</tt>
+        </td>
+        <td>
+            Use TensorFlow model to classify images.
+        </td>
+        <td>
+            <form action="/image_classify" method="POST" enctype="multipart/form-data">
+	            <label>Images: </label>
+                <input type="file" name="files" multiple/>
+                <br/>
+	            <label>Minimum confidence: </label>
+                <input 
+                type="range" min="0.05" max="1" step="0.05" value="0.05"
+                name="min_confidence"
+                onChange="document.getElementById('min_confidence_value').innerHTML = this.value"
+                />
+	            <label id="min_confidence_value">0.05</label>
+                <input type="submit" name="Classify" value="Classify"/>
+            </form>
+        </td>
+    </tr>
+</table>
+ 
+
+
+
+
+{% endblock %}

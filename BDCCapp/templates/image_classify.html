@@ -1,0 +1,49 @@
+{% extends 'general-template.html'  %}
+{% block content %}
+
+<h1>Image classification</h1>
+
+<b>{{ data.results|length }}</b> images classified
+with a minimum confidence level of <b>{{ data.min_confidence }}</b>.
+
+<table>
+    <tr>
+        <th>Filename</th>
+        <th>Classifications</th>
+        <th>Image</th>
+    </tr>
+    {% for result in data.results %}
+    <tr>
+        <td>
+            <a href="https://storage.googleapis.com/{{ data.bucket_name }}/{{ result.filename }}">
+                {{ result.filename }}
+            </a>
+        </td>
+        <td>
+            <table>
+                <tr>
+                    <th>Class</th>
+                    <th>Confidence</th>
+                </tr>
+                {% for classification in result.classifications %}
+                <tr>
+                    <td>
+                        <a href="/image_search?description={{ classification.label }}">{{ classification.label }}</a>
+                    </td>
+                    <td>
+                        {{ classification.confidence }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </td>
+        <td>
+            <a href="https://storage.googleapis.com/{{ data.bucket_name }}/{{ result.filename }}">
+                <img src="https://storage.googleapis.com/{{ data.bucket_name }}/{{ result.filename }}" width="300" />
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
