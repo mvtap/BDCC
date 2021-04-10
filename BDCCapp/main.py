@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO,
                      format='%(asctime)s - %(levelname)s - %(message)s',
                      datefmt='%Y-%m-%d %H:%M:%S')
 
-PROJECT = os.environ.get('GOOGLE_CLOUD_PROJECT') 
+PROJECT = 'bdcc-project1-309010' #os.environ.get('GOOGLE_CLOUD_PROJECT') 
 logging.info('Google Cloud project is {}'.format(PROJECT))
 
 # Initialisation
